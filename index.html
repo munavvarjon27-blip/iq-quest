@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#100b20">
+<meta name="description" content="IQ Quest — aqlingni sinab ko'r, ball to'pla va yangi darajalarni och!">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<title>IQ Quest</title>
+<style>
+:root{--bg:#100b20;--panel:#1b1230;--panel2:#24163d;--purple:#a855f7;--pink:#e879f9;--text:#fff;--muted:#b8accb;--green:#4ade80;--red:#fb7185}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#281344 0%,var(--bg) 55%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer;border:0}.app{max-width:520px;margin:auto;min-height:100vh;padding:20px 18px 32px;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.3px}.logo{width:43px;height:43px;border-radius:15px;background:linear-gradient(145deg,#c084fc,#7c3aed);display:grid;place-items:center;font-size:24px;box-shadow:0 8px 30px #9333ea55}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;font-weight:700}.lang{background:#ffffff12;color:#fff;border:1px solid #ffffff20;padding:9px 11px;border-radius:12px;font-weight:800}
+.hero{text-align:center;padding:42px 8px 25px}.orb{width:124px;height:124px;margin:0 auto 20px;border-radius:38px;background:linear-gradient(145deg,#341a56,#171027);border:1px solid #b76cff66;display:grid;place-items:center;font-size:62px;box-shadow:0 0 50px #9333ea35;transform:rotate(-5deg)}h1{font-size:40px;line-height:1.05;margin:0 0 12px;letter-spacing:-1.5px}h1 span{color:#c084fc}.sub{color:var(--muted);line-height:1.5;margin:0 auto;max-width:340px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 22px}.stat{background:#ffffff08;border:1px solid #ffffff13;border-radius:17px;padding:14px}.stat strong{display:block;font-size:21px}.stat span{font-size:12px;color:var(--muted)}.primary{width:100%;border-radius:16px;padding:17px 20px;color:white;font-size:17px;font-weight:900;background:linear-gradient(100deg,#9333ea,#c026d3);box-shadow:0 10px 30px #9333ea35}.secondary{width:100%;border-radius:15px;padding:14px;background:#ffffff0a;border:1px solid #ffffff1a;color:#fff;font-weight:800;margin-top:10px}.foot{text-align:center;color:#817393;font-size:11px;margin-top:auto;padding-top:28px}
+.screen{display:none}.screen.active{display:block}.screenhead{display:flex;align-items:center;justify-content:space-between;margin:26px 0 20px}.back{color:#d8b4fe;background:#ffffff0c;border:1px solid #ffffff15;border-radius:12px;padding:10px 13px}.pill{background:#2a1741;color:#d8b4fe;padding:9px 12px;border-radius:12px;font-size:13px;font-weight:800}.progress{height:7px;background:#ffffff14;border-radius:9px;overflow:hidden;margin:14px 0 24px}.bar{height:100%;width:0;background:linear-gradient(90deg,#a855f7,#e879f9);transition:width .25s}.qmeta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.question{font-size:25px;line-height:1.3;font-weight:850;margin:0 0 22px}.answers{display:grid;gap:11px}.answer{text-align:left;padding:16px;border:1px solid #ffffff1a;background:#ffffff08;color:#fff;border-radius:15px;font-weight:700;display:flex;gap:12px;align-items:center}.letter{width:30px;height:30px;border-radius:10px;background:#ffffff10;display:grid;place-items:center;color:#d8b4fe;flex-shrink:0}.answer.correct{border-color:#4ade80;background:#14532d66}.answer.wrong{border-color:#fb7185;background:#88133766}.feedback{display:none;margin:16px 0;padding:14px;border-radius:14px;background:#ffffff0c;color:var(--muted);line-height:1.45}.feedback.show{display:block}.next{margin-top:15px}.result{text-align:center;padding-top:35px}.trophy{font-size:68px;margin:10px}.score{font-size:54px;font-weight:950;color:#d8b4fe;margin:10px}.result h2{font-size:29px;margin:8px}.result p{color:var(--muted);line-height:1.5}.section-title{font-size:13px;text-transform:uppercase;letter-spacing:1.8px;color:#b8accb;font-weight:800;margin:24px 0 12px}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><div class="logo">🧠</div><div>IQ QUEST<small>THINK • SOLVE • LEVEL UP</small></div></div>
+    <button class="lang" id="langBtn" aria-label="Change language">UZ / EN</button>
+  </header>
+
+  <main id="home" class="screen active">
+    <section class="hero">
+      <div class="orb">⚡</div>
+      <h1 id="headline">Miyangni <span>sinab ko‘r!</span></h1>
+      <p class="sub" id="tagline">Jumboqlarni yech. Ball to‘pla. O‘z rekordlaringni yangila.</p>
+    </section>
+    <div class="stats">
+      <div class="stat"><strong id="bestScore">0</strong><span id="bestLabel">Eng yaxshi natija</span></div>
+      <div class="stat"><strong>10</strong><span id="countLabel">Savollar har turda</span></div>
+    </div>
+    <button class="primary" id="playBtn">▶ &nbsp; O‘YINNI BOSHLASH</button>
+    <button class="secondary" id="howBtn">✦ &nbsp; <span id="howText">Qanday o‘ynaladi?</span></button>
+    <p class="foot">IQ QUEST · <span id="footText">Har bir savol — yangi imkoniyat</span></p>
+  </main>
+
+  <main id="game" class="screen">
+    <div class="screenhead"><button class="back" id="homeBtn">← <span id="backText">Bosh sahifa</span></button><div class="pill">⭐ <span id="liveScore">0</span></div></div>
+    <div class="qmeta"><span id="qNumber">SAVOL 1 / 10</span><span>⏱ <b id="timer">20</b>s</span></div>
+    <div class="progress"><div class="bar" id="progressBar"></div></div>
+    <h2 class="question" id="questionText"></h2>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="primary next" id="nextBtn" style="display:none">KEYINGI SAVOL →</button>
+  </main>
+
+  <main id="result" class="screen result">
+    <div class="screenhead"><button class="back" id="resultHome">← <span id="resultBack">Bosh sahifa</span></button><div class="pill">🏆 IQ QUEST</div></div>
+    <div class="trophy" id="trophy">🏆</div>
+    <h2 id="resultTitle">Ajoyib harakat!</h2>
+    <div class="score"><span id="finalScore">0</span><small style="font-size:19px"> / 100</small></div>
+    <p id="resultDesc">Har bir urinish seni kuchaytiradi.</p>
+    <button class="primary" id="againBtn">↻ &nbsp; QAYTA O‘YNASH</button>
+    <button class="secondary" id="shareBtn">↗ &nbsp; <span id="shareText">Natijani ulashish</span></button>
+  </main>
+</div>
+<script>
+const questions={
+uz:[
+{q:"Qaysi son keyingi keladi? 2, 4, 8, 16, ...",a:["18","24","32","30"],c:2,e:"Har safar son 2 ga ko‘paymoqda: 16 × 2 = 32."},
+{q:"Bir haftada nechta kun bor?",a:["5","6","7","8"],c:2,e:"Bir haftada 7 kun bor."},
+{q:"Sen poygada ikkinchi yuguruvchini ortda qoldirding. Endi nechanchi o‘rindasan?",a:["Birinchi","Ikkinchi","Uchinchi","To‘rtinchi"],c:1,e:"Ikkinchi yuguruvchining o‘rnini olding — demak, ikkinchisan."},
+{q:"Qaysi biri boshqalariga o‘xshamaydi?",a:["Olma","Nok","Sabzi","Shaftoli"],c:2,e:"Sabzi sabzavot, qolganlari meva."},
+{q:"3 ta mushuk 3 ta sichqonni 3 daqiqada tutsa, 1 mushuk 1 sichqonni qancha vaqtda tutadi?",a:["1 daqiqa","3 daqiqa","9 daqiqa","3 soniya"],c:1,e:"Har bir mushuk bitta sichqonni 3 daqiqada tutadi."},
+{q:"Qaysi oyda 28 kun bor?",a:["Faqat fevralda","Yanvarda","Barcha oylarda","Hech qaysi oyda"],c:2,e:"Barcha oylarda kamida 28 kun bor!"},
+{q:"10 dan 3 ni ayirib, yana 3 ni ayirsang, nechchi qoladi?",a:["4","7","3","1"],c:0,e:"10 − 3 − 3 = 4."},
+{q:"Elektr poyezdi shimolga qarab ketyapti. Tutuni qaysi tomonga ketadi?",a:["Shimolga","Janubga","Sharqqa","Tutun chiqmaydi"],c:3,e:"Elektr poyezdida tutun bo‘lmaydi."},
+{q:"1, 1, 2, 3, 5, 8, ... Keyingi son?",a:["11","12","13","15"],c:2,e:"Fibonachchi ketma-ketligi: 5 + 8 = 13."},
+{q:"Xonada 4 burchak bor. Har burchakda bittadan mushuk. Jami nechta mushuk?",a:["4","8","12","16"],c:0,e:"Har burchakda bittadan mushuk — jami 4 ta."}
+],
+en:[
+{q:"What number comes next? 2, 4, 8, 16, ...",a:["18","24","32","30"],c:2,e:"Each number doubles: 16 × 2 = 32."},
+{q:"How many days are in a week?",a:["5","6","7","8"],c:2,e:"There are 7 days in a week."},
+{q:"In a race, you pass the runner in second place. What place are you in?",a:["First","Second","Third","Fourth"],c:1,e:"You take the second runner's place, so you're second."},
+{q:"Which one doesn't belong?",a:["Apple","Pear","Carrot","Peach"],c:2,e:"A carrot is a vegetable; the others are fruits."},
+{q:"If 3 cats catch 3 mice in 3 minutes, how long does 1 cat take to catch 1 mouse?",a:["1 minute","3 minutes","9 minutes","3 seconds"],c:1,e:"Each cat catches one mouse in 3 minutes."},
+{q:"Which month has 28 days?",a:["February only","January","All months","None"],c:2,e:"Every month has at least 28 days!"},
+{q:"Start with 10, subtract 3, then subtract 3 again. What's left?",a:["4","7","3","1"],c:0,e:"10 − 3 − 3 = 4."},
+{q:"An electric train is heading north. Which way does its smoke go?",a:["North","South","East","It has no smoke"],c:3,e:"Electric trains don't produce smoke."},
+{q:"1, 1, 2, 3, 5, 8, ... What's next?",a:["11","12","13","15"],c:2,e:"Fibonacci sequence: 5 + 8 = 13."},
+{q:"A room has 4 corners. There is one cat in each corner. How many cats?",a:["4","8","12","16"],c:0,e:"One cat in each corner means 4 cats."}
+]};
+const copy={
+uz:{headline:'Miyangni <span>sinab ko‘r!</span>',tagline:"Jumboqlarni yech. Ball to‘pla. O‘z rekordlaringni yangila.",best:"Eng yaxshi natija",count:"Savollar har turda",play:"▶ &nbsp; O‘YINNI BOSHLASH",how:"Qanday o‘ynaladi?",foot:"Har bir savol — yangi imkoniyat",back:"Bosh sahifa",next:"KEYINGI SAVOL →",again:"↻ &nbsp; QAYTA O‘YNASH",share:"Natijani ulashish",resultBack:"Bosh sahifa",great:"Ajoyib harakat!",desc:"Har bir urinish seni kuchaytiradi.",perfect:"Zo‘r! Sen haqiqiy aql ustasisan!",good:"Yaxshi natija! Yana urinib ko‘r!",try:"Mashq qilishda davom et — sen uddalaysan!",howAlert:"Har savolga javob tanla. To‘g‘ri javob +10 ball. Har savol uchun 20 soniya bor."},
+en:{headline:'Challenge your <span>mind!</span>',tagline:"Solve puzzles. Earn points. Beat your own best.",best:"Best score",count:"Questions per round",play:"▶ &nbsp; START PLAYING",how:"How to play?",foot:"Every question is a new chance",back:"Home",next:"NEXT QUESTION →",again:"↻ &nbsp; PLAY AGAIN",share:"Share your score",resultBack:"Home",great:"Great effort!",desc:"Every attempt makes you sharper.",perfect:"Brilliant! You're a true mind master!",good:"Great score! Try again to beat it!",try:"Keep practicing — you've got this!",howAlert:"Choose an answer for each question. Correct answer = +10 points. You have 20 seconds per question."}
+};
+let lang="uz",idx=0,score=0,locked=false,remaining=20,clock=null;
+const $=id=>document.getElementById(id);
+function tr(key){return copy[lang][key]}
+function applyLang(){
+$("langBtn").textContent=lang==="uz"?"UZ / EN":"EN / UZ";
+$("headline").innerHTML=tr("headline");$("tagline").textContent=tr("tagline");$("bestLabel").textContent=tr("best");$("countLabel").textContent=tr("count");$("playBtn").innerHTML=tr("play");$("howText").textContent=tr("how");$("footText").textContent=tr("foot");$("backText").textContent=tr("back");$("resultBack").textContent=tr("resultBack");$("nextBtn").textContent=tr("next");$("againBtn").innerHTML=tr("again");$("shareText").textContent=tr("share");$("resultTitle").textContent=tr("great");
+if($("game").classList.contains("active"))renderQuestion();
+}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active")}
+function best(){return Number(localStorage.getItem("iqquest-best")||0)}
+function updateBest(){$("bestScore").textContent=best()}
+function start(){clearInterval(clock);idx=0;score=0;show("game");renderQuestion()}
+function renderQuestion(){
+clearInterval(clock);locked=false;remaining=20;$("timer").textContent=remaining;$("liveScore").textContent=score;
+let item=questions[lang][idx];$("qNumber").textContent=(lang==="uz"?"SAVOL ":"QUESTION ")+(idx+1)+" / "+questions[lang].length;$("progressBar").style.width=(idx/questions[lang].length*100)+"%";$("questionText").textContent=item.q;$("feedback").className="feedback";$("nextBtn").style.display="none";$("answers").innerHTML="";
+item.a.forEach((answer,i)=>{let b=document.createElement("button");b.className="answer";b.innerHTML='<span class="letter">'+String.fromCharCode(65+i)+'</span><span>'+answer+'</span>';b.onclick=()=>choose(i);$("answers").appendChild(b)});
+clock=setInterval(()=>{remaining--;$("timer").textContent=remaining;if(remaining<=0)choose(-1)},1000);
+}
+function choose(choice){
+if(locked)return;locked=true;clearInterval(clock);let item=questions[lang][idx];let buttons=[...document.querySelectorAll(".answer")];buttons.forEach((b,i)=>{b.disabled=true;if(i===item.c)b.classList.add("correct");if(i===choice&&choice!==item.c)b.classList.add("wrong")});
+if(choice===item.c)score+=10;$("liveScore").textContent=score;$("feedback").textContent=(choice===item.c?(lang==="uz"?"✅ To‘g‘ri! ":"✅ Correct! "):(lang==="uz"?"❌ Bu safar emas. ":"❌ Not this time. "))+item.e;$("feedback").classList.add("show");$("nextBtn").style.display="block";$("nextBtn").textContent=idx===questions[lang].length-1?(lang==="uz"?"NATIJANI KO‘RISH →":"SEE RESULTS →"):tr("next");
+}
+function next(){if(!locked)return;idx++;if(idx>=questions[lang].length)finish();else renderQuestion()}
+function finish(){clearInterval(clock);if(score>best())localStorage.setItem("iqquest-best",score);updateBest();$("finalScore").textContent=score;$("progressBar").style.width="100%";$("trophy").textContent=score===100?"👑":score>=70?"🏆":score>=40?"⚡":"🧠";$("resultTitle").textContent=score===100?(lang==="uz"?"Mukammal natija!":"Perfect score!"):tr("great");$("resultDesc").textContent=score>=70?tr("perfect"):score>=40?tr("good"):tr("try");show("result")}
+$("langBtn").onclick=()=>{lang=lang==="uz"?"en":"uz";applyLang()};
+$("playBtn").onclick=start;$("howBtn").onclick=()=>alert(tr("howAlert"));$("homeBtn").onclick=()=>{clearInterval(clock);show("home")};$("resultHome").onclick=()=>show("home");$("nextBtn").onclick=next;$("againBtn").onclick=start;
+$("shareBtn").onclick=async()=>{let msg="IQ Quest: "+score+"/100! "+(lang==="uz"?"Sen nechchi ball olasan?":"Can you beat my score?");if(navigator.share){try{await navigator.share({title:"IQ Quest",text:msg})}catch(e){}}else{try{await navigator.clipboard.writeText(msg);alert(lang==="uz"?"Natija nusxalandi!":"Score copied!")}catch(e){alert(msg)}}};
+updateBest();applyLang();
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body></html>
